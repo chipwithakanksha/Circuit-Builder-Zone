@@ -1,0 +1,193 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : FourBitSubtractor.vf
+// /___/   /\     Timestamp : 08/13/2025 13:21:20
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog /home/ise/VB_duplicate/NewProject/FourBitSubtractor.vf -w /home/ise/VB_duplicate/NewProject/FourBitSubtractor.sch
+//Design Name: FourBitSubtractor
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module HalfAdder_MUSER_FourBitSubtractor(A, 
+                                         B, 
+                                         Reset, 
+                                         Cout, 
+                                         Sum);
+
+    input A;
+    input B;
+    input Reset;
+   output Cout;
+   output Sum;
+   
+   wire XLXN_7;
+   wire XLXN_8;
+   
+   XOR2  XLXI_1 (.I0(B), 
+                .I1(A), 
+                .O(XLXN_7));
+   AND2  XLXI_2 (.I0(B), 
+                .I1(A), 
+                .O(XLXN_8));
+   AND2  XLXI_3 (.I0(Reset), 
+                .I1(XLXN_7), 
+                .O(Sum));
+   AND2  XLXI_4 (.I0(XLXN_8), 
+                .I1(Reset), 
+                .O(Cout));
+endmodule
+`timescale 1ns / 1ps
+
+module FourBit2sComplement_MUSER_FourBitSubtractor(A, 
+                                                   Reset, 
+                                                   Ab, 
+                                                   Comp, 
+                                                   Cout);
+
+    input [3:0] A;
+    input Reset;
+   output [3:0] Ab;
+   output [3:0] Comp;
+   output Cout;
+   
+   wire XLXN_9;
+   wire XLXN_17;
+   wire XLXN_21;
+   wire XLXN_23;
+   wire [3:0] Ab_DUMMY;
+   
+   assign Ab[3:0] = Ab_DUMMY[3:0];
+   INV  inv_0 (.I(A[0]), 
+              .O(Ab_DUMMY[0]));
+   INV  inv_1 (.I(A[1]), 
+              .O(Ab_DUMMY[1]));
+   INV  inv_2 (.I(A[2]), 
+              .O(Ab_DUMMY[2]));
+   INV  inv_3 (.I(A[3]), 
+              .O(Ab_DUMMY[3]));
+   HalfAdder_MUSER_FourBitSubtractor  XLXI_5 (.A(Ab_DUMMY[0]), 
+                                             .B(XLXN_9), 
+                                             .Reset(Reset), 
+                                             .Cout(XLXN_17), 
+                                             .Sum(Comp[0]));
+   VCC  XLXI_9 (.P(XLXN_9));
+   HalfAdder_MUSER_FourBitSubtractor  XLXI_10 (.A(Ab_DUMMY[1]), 
+                                              .B(XLXN_17), 
+                                              .Reset(Reset), 
+                                              .Cout(XLXN_21), 
+                                              .Sum(Comp[1]));
+   HalfAdder_MUSER_FourBitSubtractor  XLXI_11 (.A(Ab_DUMMY[2]), 
+                                              .B(XLXN_21), 
+                                              .Reset(Reset), 
+                                              .Cout(XLXN_23), 
+                                              .Sum(Comp[2]));
+   HalfAdder_MUSER_FourBitSubtractor  XLXI_12 (.A(Ab_DUMMY[3]), 
+                                              .B(XLXN_23), 
+                                              .Reset(Reset), 
+                                              .Cout(Cout), 
+                                              .Sum(Comp[3]));
+endmodule
+`timescale 1ns / 1ps
+
+module FullAdder_MUSER_FourBitSubtractor(A, 
+                                         B, 
+                                         Cin, 
+                                         Reset, 
+                                         Cout, 
+                                         Sum);
+
+    input A;
+    input B;
+    input Cin;
+    input Reset;
+   output Cout;
+   output Sum;
+   
+   wire XLXN_12;
+   wire XLXN_13;
+   wire XLXN_14;
+   wire XLXN_25;
+   wire XLXN_26;
+   
+   XOR3  XLXI_1 (.I0(Cin), 
+                .I1(B), 
+                .I2(A), 
+                .O(XLXN_25));
+   AND2  XLXI_2 (.I0(B), 
+                .I1(A), 
+                .O(XLXN_12));
+   AND2  XLXI_3 (.I0(Cin), 
+                .I1(A), 
+                .O(XLXN_13));
+   AND2  XLXI_4 (.I0(Cin), 
+                .I1(B), 
+                .O(XLXN_14));
+   OR3  XLXI_5 (.I0(XLXN_14), 
+               .I1(XLXN_13), 
+               .I2(XLXN_12), 
+               .O(XLXN_26));
+   AND2  XLXI_6 (.I0(Reset), 
+                .I1(XLXN_25), 
+                .O(Sum));
+   AND2  XLXI_7 (.I0(XLXN_26), 
+                .I1(Reset), 
+                .O(Cout));
+endmodule
+`timescale 1ns / 1ps
+
+module FourBitSubtractor(A, 
+                         B, 
+                         Restart, 
+                         Cout, 
+                         S);
+
+    input [3:0] A;
+    input [3:0] B;
+    input Restart;
+   output Cout;
+   output [3:0] S;
+   
+   wire [3:0] Bb;
+   wire XLXN_5;
+   wire XLXN_6;
+   wire XLXN_8;
+   
+   FullAdder_MUSER_FourBitSubtractor  XLXI_1 (.A(A[3]), 
+                                             .B(Bb[3]), 
+                                             .Cin(XLXN_8), 
+                                             .Reset(Restart), 
+                                             .Cout(Cout), 
+                                             .Sum(S[3]));
+   FullAdder_MUSER_FourBitSubtractor  XLXI_2 (.A(A[2]), 
+                                             .B(Bb[2]), 
+                                             .Cin(XLXN_6), 
+                                             .Reset(Restart), 
+                                             .Cout(XLXN_8), 
+                                             .Sum(S[2]));
+   FullAdder_MUSER_FourBitSubtractor  XLXI_3 (.A(A[1]), 
+                                             .B(Bb[1]), 
+                                             .Cin(XLXN_5), 
+                                             .Reset(Restart), 
+                                             .Cout(XLXN_6), 
+                                             .Sum(S[1]));
+   HalfAdder_MUSER_FourBitSubtractor  XLXI_4 (.A(A[0]), 
+                                             .B(Bb[0]), 
+                                             .Reset(Restart), 
+                                             .Cout(XLXN_5), 
+                                             .Sum(S[0]));
+   FourBit2sComplement_MUSER_FourBitSubtractor  XLXI_5 (.A(B[3:0]), 
+                                                       .Reset(Restart), 
+                                                       .Comp(Bb[3:0]));
+endmodule
