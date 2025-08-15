@@ -1,0 +1,146 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : NineBitTwosComplement.vf
+// /___/   /\     Timestamp : 08/15/2025 09:10:50
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog /home/ise/VB_duplicate/Basic/NineBitTwosComplement.vf -w /home/ise/VB_duplicate/Basic/NineBitTwosComplement.sch
+//Design Name: NineBitTwosComplement
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module HalfAdderwithReset_MUSER_NineBitTwosComplement(A, 
+                                                      B, 
+                                                      Reset, 
+                                                      Cout, 
+                                                      S);
+
+    input A;
+    input B;
+    input Reset;
+   output Cout;
+   output S;
+   
+   wire XLXN_3;
+   wire XLXN_4;
+   
+   XOR2  XLXI_1 (.I0(B), 
+                .I1(A), 
+                .O(XLXN_3));
+   AND2  XLXI_2 (.I0(B), 
+                .I1(A), 
+                .O(XLXN_4));
+   AND2  XLXI_3 (.I0(Reset), 
+                .I1(XLXN_3), 
+                .O(S));
+   AND2  XLXI_4 (.I0(XLXN_4), 
+                .I1(Reset), 
+                .O(Cout));
+endmodule
+`timescale 1ns / 1ps
+
+module NineBitTwosComplement(A, 
+                             RS0, 
+                             Ab, 
+                             Ac, 
+                             X);
+
+    input [3:0] A;
+    input RS0;
+   output [3:0] Ab;
+   output [8:0] Ac;
+   output [8:4] X;
+   
+   wire [8:4] XLXN_8;
+   wire XLXN_65;
+   wire XLXN_73;
+   wire XLXN_82;
+   wire XLXN_83;
+   wire XLXN_84;
+   wire XLXN_85;
+   wire XLXN_86;
+   wire XLXN_87;
+   wire XLXN_88;
+   wire [8:4] X_DUMMY;
+   wire [3:0] Ab_DUMMY;
+   
+   assign Ab[3:0] = Ab_DUMMY[3:0];
+   assign X[8:4] = X_DUMMY[8:4];
+   GND  GND_4 (.G(XLXN_8[4]));
+   GND  GND_5 (.G(XLXN_8[5]));
+   GND  GND_6 (.G(XLXN_8[6]));
+   GND  GND_7 (.G(XLXN_8[7]));
+   GND  GND_8 (.G(XLXN_8[8]));
+   INV  INV_0 (.I(A[0]), 
+              .O(Ab_DUMMY[0]));
+   INV  INV_1 (.I(A[1]), 
+              .O(Ab_DUMMY[1]));
+   INV  INV_2 (.I(A[2]), 
+              .O(Ab_DUMMY[2]));
+   INV  INV_3 (.I(A[3]), 
+              .O(Ab_DUMMY[3]));
+   INV  INV_4 (.I(XLXN_8[4]), 
+              .O(X_DUMMY[4]));
+   INV  INV_5 (.I(XLXN_8[5]), 
+              .O(X_DUMMY[5]));
+   INV  INV_6 (.I(XLXN_8[6]), 
+              .O(X_DUMMY[6]));
+   INV  INV_7 (.I(XLXN_8[7]), 
+              .O(X_DUMMY[7]));
+   INV  INV_8 (.I(XLXN_8[8]), 
+              .O(X_DUMMY[8]));
+   VCC  XLXI_32 (.P(XLXN_87));
+   GND  XLXI_33 (.G(XLXN_88));
+   VCC  XLXI_34 (.P(Ac[8]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_35 (.A(X_DUMMY[7]), 
+                                                           .B(XLXN_86), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_88), 
+                                                           .S(Ac[7]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_36 (.A(X_DUMMY[6]), 
+                                                           .B(XLXN_85), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_86), 
+                                                           .S(Ac[6]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_37 (.A(X_DUMMY[5]), 
+                                                           .B(XLXN_84), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_85), 
+                                                           .S(Ac[5]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_38 (.A(X_DUMMY[4]), 
+                                                           .B(XLXN_83), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_84), 
+                                                           .S(Ac[4]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_39 (.A(Ab_DUMMY[3]), 
+                                                           .B(XLXN_82), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_83), 
+                                                           .S(Ac[3]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_40 (.A(Ab_DUMMY[2]), 
+                                                           .B(XLXN_73), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_82), 
+                                                           .S(Ac[2]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_41 (.A(Ab_DUMMY[1]), 
+                                                           .B(XLXN_65), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_73), 
+                                                           .S(Ac[1]));
+   HalfAdderwithReset_MUSER_NineBitTwosComplement  XLXI_42 (.A(Ab_DUMMY[0]), 
+                                                           .B(XLXN_87), 
+                                                           .Reset(RS0), 
+                                                           .Cout(XLXN_65), 
+                                                           .S(Ac[0]));
+endmodule
