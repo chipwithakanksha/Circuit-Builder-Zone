@@ -1,0 +1,95 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : TwoBitComparator.vf
+// /___/   /\     Timestamp : 08/16/2025 18:31:57
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog /home/ise/VB_duplicate/Basic/TwoBitComparator.vf -w /home/ise/VB_duplicate/Basic/TwoBitComparator.sch
+//Design Name: TwoBitComparator
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module TwoBitComparator(A, 
+                        B, 
+                        AisEqualToB, 
+                        AisGreaterThanB, 
+                        AisSmallerThanB);
+
+    input [1:0] A;
+    input [1:0] B;
+   output AisEqualToB;
+   output AisGreaterThanB;
+   output AisSmallerThanB;
+   
+   wire XLXN_9;
+   wire XLXN_17;
+   wire XLXN_22;
+   wire XLXN_26;
+   wire XLXN_29;
+   wire XLXN_30;
+   wire XLXN_31;
+   wire XLXN_32;
+   wire XLXN_33;
+   wire XLXN_34;
+   wire XLXN_36;
+   wire XLXN_37;
+   
+   AND3  XLXI_1 (.I0(XLXN_22), 
+                .I1(XLXN_26), 
+                .I2(A[0]), 
+                .O(XLXN_29));
+   AND2  XLXI_2 (.I0(XLXN_26), 
+                .I1(A[1]), 
+                .O(XLXN_30));
+   AND3  XLXI_3 (.I0(XLXN_22), 
+                .I1(A[0]), 
+                .I2(A[1]), 
+                .O(XLXN_31));
+   AND3  XLXI_6 (.I0(B[0]), 
+                .I1(XLXN_9), 
+                .I2(XLXN_17), 
+                .O(XLXN_34));
+   AND3  XLXI_7 (.I0(B[0]), 
+                .I1(B[1]), 
+                .I2(XLXN_9), 
+                .O(XLXN_36));
+   AND2  XLXI_8 (.I0(B[1]), 
+                .I1(XLXN_17), 
+                .O(XLXN_37));
+   INV  XLXI_12 (.I(A[1]), 
+                .O(XLXN_17));
+   INV  XLXI_13 (.I(A[0]), 
+                .O(XLXN_9));
+   INV  XLXI_14 (.I(B[0]), 
+                .O(XLXN_22));
+   INV  XLXI_15 (.I(B[1]), 
+                .O(XLXN_26));
+   OR3  XLXI_16 (.I0(XLXN_31), 
+                .I1(XLXN_30), 
+                .I2(XLXN_29), 
+                .O(AisGreaterThanB));
+   OR3  XLXI_17 (.I0(XLXN_37), 
+                .I1(XLXN_36), 
+                .I2(XLXN_34), 
+                .O(AisSmallerThanB));
+   AND2  XLXI_18 (.I0(XLXN_33), 
+                 .I1(XLXN_32), 
+                 .O(AisEqualToB));
+   XNOR2  XLXI_19 (.I0(B[0]), 
+                  .I1(A[0]), 
+                  .O(XLXN_32));
+   XNOR2  XLXI_20 (.I0(B[1]), 
+                  .I1(A[1]), 
+                  .O(XLXN_33));
+endmodule
